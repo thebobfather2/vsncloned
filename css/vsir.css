@@ -1,0 +1,142 @@
+.bmpui-ui-skin-modern .bmpui-ui-controlbar.bmpui-hidden {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("./src/img/purchase.png");
+  }
+
+  .purchaseButton {
+    margin-top: -100px;
+    margin-bottom: 60px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .livepurchaseButton {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+  }
+
+  video {
+    border-width: 10px !important;
+    border-color: white;
+    border: solid;
+    margin: 10%;
+    margin-top: 200px;
+    width: 80%;
+    background-color: black;
+    box-shadow: 20px 20px #00000020;
+  }
+
+  #error-message {
+    padding: 20px 0 10px;
+    text-align: center;
+    color: #bb0000;
+  }
+
+  #error-message:empty {
+    padding: 0;
+  }
+
+  #bitrate {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    height: 2rem;
+  }
+
+  .controls {
+    margin: 20px 0 50px;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+  }
+
+  .actions button {
+    background: white;
+    border: 1px solid #1b73e8;
+    color: #1b73e8;
+
+    height: 30px;
+    width: 200px;
+    margin-right: 5px;
+  }
+
+  .actions button.active {
+    background: #1b73e8;
+    color: white;
+  }
+
+  .actions button:hover {
+    background: #1b7bff;
+    color: white;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .input-container input,
+  .input-container textarea {
+    width: 75rem;
+    padding: 0 0.5rem;
+    height: 3rem;
+    font-family: monospace;
+    border: 1px solid gray;
+  }
+
+  .input-container textarea {
+    height: 20rem;
+  }
+
+  .vidWindow {
+    justify-content: center;
+    margin-left: 2000px;
+  }
+
+  .skipBtn {
+    color: black;
+    position: relative;
+    float: right;
+    margin-right: 150px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    video {
+      margin-top: 100px !important;
+      border-width: 10px !important;
+      border: solid;
+      box-shadow: 20px 20px #00000020;
+    }
+
+    .purchaseButton {
+      margin-top: 0px;
+      margin-bottom: 60px;
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+    }
+}

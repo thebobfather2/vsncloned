@@ -1,0 +1,1 @@
+[27-Oct-2021 22:13:18 Etc/UTC] PHP Deprecated:  __autoload() is deprecated, use spl_autoload_register() instead in /home/sd1eyh9jvqi4/public_html/astoriaadvertising.com/ASI2/php/PHPMailerAutoload.php on line 45

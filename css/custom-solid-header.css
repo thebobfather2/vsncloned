@@ -1,0 +1,46 @@
+body
+{
+    background-color: #0e1419 !important;
+    /*color: white !important;*/
+    color: white;
+}
+
+.navbar
+{
+    /*background-color: transparent;*/
+    /*color: white !important;*/
+}
+
+nav.navbar.tminav.transparent {
+    background-color: #0e1419;
+}
+
+nav.navbar.tminav.navbar-small-height {
+    background-color: #1f1e1e;
+    border-bottom: 1px solid #e3e5e5;
+    -webkit-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.3, 1.0);
+    -moz-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.3, 1.0);
+    -o-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.3, 1.0);
+    -ms-transition: all 0.3s cubic-bezier(0.0, 0.0, 0.3, 1.0);
+    transition: all 0.3s cubic-bezier(0.0, 0.0, 0.3, 1.0);
+}
+
+@media (min-width: 768px) {
+    nav.navbar.tminav.navbar-small-height ul.nav > li {
+        margin-top: 0px;
+    }
+    nav.navbar.tminav.navbar-small-height ul.nav > li > a {
+        color: white;
+        padding: 24px 0;
+    }
+}
+
+.half-section-square
+{
+    color: #737d80;
+}
+
+.page-section > .portfolio, .page-section > .section-light
+{
+    color: #737d80;
+}
