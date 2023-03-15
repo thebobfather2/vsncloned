@@ -72,6 +72,7 @@
 <body>
 
     <div class="purchaseButton" id="embed-player" ></div>
+    <div id="hash" ></div>
     <br/><br/><br/>
 
     <a id="currentLink" href="#" class="purchaseButton" target="_blank"><img src="images/purchase.png" alt="Purchase button"/></a>
@@ -714,7 +715,7 @@
             window.console.log("hash", hash);
             var targetVariable = selectedSong.hash;
             window.console.log("target variable:", targetVariable);
-    
+
             var matchUrl;
             
             for (var i = 0; i < songsdata.length; i++) {
@@ -733,6 +734,8 @@
             const objectId = contentId.startsWith("iq__") ? contentId : "";
             const versionHash = contentId.startsWith("hq__") ? contentId : "";
 
+            console.log("versionHash", hash)
+            document.getElementById("hash").innerHTML = 'hash = ' + hash;
 
             if (isFirstLoad) {
               document.getElementById("embed-player").insertAdjacentHTML('beforeend', `
@@ -741,7 +744,6 @@
                       frameborder="0" type="text/html"
                       allow="encrypted-media"
                       src="https://embed.v3.contentfabric.io//?net=main&p&ct=h&vid=` + versionHash + `&ath=" />`);
-
               const width = window.innerWidth * 8/10;
               document.getElementById("embed").width = width;
               document.getElementById("embed").height = document.getElementById("embed").width * 9/16;
@@ -1241,10 +1243,6 @@
     <script src="js/bootstrap-hover-dropdown.js"></script>
     <script src="js/jquery.parallax-1.1.3.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
-    You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src="js/google.maps.js"></script>
     <script src="js/jquery.vimelar.js"></script>
     <script src="js/jquery.vide.js"></script>
     <script src="js/jquery.magnific-popup.js"></script>
