@@ -518,36 +518,55 @@
             const objectId = contentId.startsWith("iq__") ? contentId : "";
             const versionHash = contentId.startsWith("hq__") ? contentId : "";
     
-            let playoutOptions;
-            if(PLAYER_TYPE === "bitmovin") {
-              playoutOptions = await client.BitmovinPlayoutOptions({
-                objectId,
-                versionHash,
-                protocols: [PROTOCOL],
-                drms: [DRM]
-              });
+            if (isFirstLoad) {
+          document.getElementById("embed-player").insertAdjacentHTML('beforeend', `
+            <iframe id=embed width=320 height=240
+                scrolling="no" marginheight="0" marginwidth="0"
+                frameborder="0" type="text/html"
+                allow="encrypted-media"
+                src="https://embed.v3.contentfabric.io//?net=main&p&ct=h&vid=` + versionHash + `&ath=" />
+            `);
+          const width = window.innerWidth * 7/10;
+          document.getElementById("embed").width = width;
+          document.getElementById("embed").height = document.getElementById("embed").width * 9/16;
+
+          // we want to do all the player construction work once, and then have playNextTrack not
+          // create a new player, just set the source, as we do w/ the embed iframe above.
+          // This approach maintains volume bar changes, for example, instead of resetting it each time.
+            // let playoutOptions;
+            // if(PLAYER_TYPE === "bitmovin") {
+            //   playoutOptions = await client.BitmovinPlayoutOptions({
+            //     objectId,
+            //     versionHash,
+            //     protocols: [PROTOCOL],
+            //     drms: [DRM]
+            //   });
     
-              LoadBitmovin(playoutOptions);
-            } else {
-              playoutOptions = await client.PlayoutOptions({
-                objectId,
-                versionHash,
-                protocols: [PROTOCOL],
-                drms: [DRM]
-              });
+            //   LoadBitmovin(playoutOptions);
+            // } else {
+            //   playoutOptions = await client.PlayoutOptions({
+            //     objectId,
+            //     versionHash,
+            //     protocols: [PROTOCOL],
+            //     drms: [DRM]
+            //   });
     
-              if(PROTOCOL === "hls") {
-                LoadHlsJs(playoutOptions);
-              } else {
-                LoadDash(playoutOptions);
-              }
-            }
+            //   if(PROTOCOL === "hls") {
+            //     LoadHlsJs(playoutOptions);
+            //   } else {
+            //     LoadDash(playoutOptions);
+            //   }
+            // }
     
-            const ve = document.getElementById("video-element");
+            let ve = document.getElementById("video-element");
             ve.onended = function() {
               window.console.log("The clip has ended");
               playNextTrack();
             };
+          } else {
+          document.getElementById("embed").src = "https://embed.v3.contentfabric.io//?net=main&p&ct=h&vid=" + versionHash + "&ath=";
+          return;
+        }
     
           } catch(error) {
             SetErrorMessage(error.message ? error.message : error);
