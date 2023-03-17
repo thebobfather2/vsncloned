@@ -71,6 +71,9 @@
 
 <body>
     <a id="currentLink" href="#" class="purchaseButton" target="_blank"><img src="images/purchase.png" alt="Purchase button"/></a>
+
+    <br/><br/><br/><a id="nextButton" class="purchaseButton" target="_blank"><img src="images/next.png" alt="Next button"/></a>
+
     <div id="wrapper">
 
         <!-- Page Loader -->
@@ -322,8 +325,11 @@
               activeOption = "load-dash";
             }
           }
-    
+
           document.getElementById(activeOption).className = "active";
+
+          document.getElementById("nextButton").onclick = playNextTrack;
+
         };
     
         const DestroyPlayer = () => {
@@ -1208,9 +1214,6 @@
     <script src="js/bootstrap-hover-dropdown.js"></script>
     <script src="js/jquery.parallax-1.1.3.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
-    You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="js/google.maps.js"></script>
     <script src="js/jquery.vimelar.js"></script>
     <script src="js/jquery.vide.js"></script>
