@@ -71,6 +71,9 @@
 
 <body>
     <a id="currentLink" href="#" class="purchaseButton" target="_blank"><img src="images/purchase.png" alt="Purchase button"/></a>
+
+    <br/><br/><br/><a id="nextButton" class="purchaseButton" target="_blank"><img src="images/next.png" alt="Next button"/></a>
+
     <div id="wrapper">
 
         <!-- Page Loader -->
@@ -268,7 +271,9 @@
         let DRM = "clear";
         let PLAYER_TYPE = "hls-dash";
         let player;
-    
+        let playlist;
+        let songs = [];
+
         const SetErrorMessage = (message) => {
           document.getElementById("error-message").innerText = message;
         };
@@ -322,8 +327,13 @@
               activeOption = "load-dash";
             }
           }
-    
+
           document.getElementById(activeOption).className = "active";
+
+          document.getElementById("nextButton").onclick = function () {
+            console.log("play next track");
+            playNextTrack();
+          };
         };
     
         const DestroyPlayer = () => {
@@ -477,24 +487,25 @@
               token: client.utils.B64(JSON.stringify({qspace_id: await client.ContentSpaceId()}))
             });
 
-            let playlist = await client.ContentObjectMetadata({
-              libraryId: "ilib3PBhfL7TEdhaHjnhLMwhAoiwnUp7",
-              objectId: "iq__2X6yb9XGgr1X6eGcNe5ssXY1AuxY",
-              versionHash: "hq__Lvvt745s8XUyUPAbo2xtmv7uUSt58PEgfkmHyfarwCXb6deAH5HNVvh3fMjvMjSz22CcbjTh72",
-              "metadataSubtree": "public/asset_metadata/titles",
-              "resolveLinks": true, "resolveIgnoreErrors": true, "resolveIncludeSource": true,
-            });
-            window.console.log("playlist", playlist);
-    
-            let songs = [];
-            for (let [_, song] of Object.entries(playlist)) {
-              for (let slug of Object.keys(song)) {
-                const title = song[slug]["display_title"];
-                const hash = song[slug]["."]["source"];
-                songs.push({ "title": title, "hash": hash });
+            if (playlist == null || playlist == undefined) {
+              playlist = await client.ContentObjectMetadata({
+                libraryId: "ilib3PBhfL7TEdhaHjnhLMwhAoiwnUp7",
+                objectId: "iq__2X6yb9XGgr1X6eGcNe5ssXY1AuxY",
+                versionHash: "hq__Lvvt745s8XUyUPAbo2xtmv7uUSt58PEgfkmHyfarwCXb6deAH5HNVvh3fMjvMjSz22CcbjTh72",
+                "metadataSubtree": "public/asset_metadata/titles",
+                "resolveLinks": true, "resolveIgnoreErrors": true, "resolveIncludeSource": true,
+              });
+              window.console.log("playlist", playlist);
+
+              for (let [_, song] of Object.entries(playlist)) {
+                for (let slug of Object.keys(song)) {
+                  const title = song[slug]["display_title"];
+                  const hash = song[slug]["."]["source"];
+                  songs.push({ "title": title, "hash": hash });
+                }
               }
+              window.console.log("songs", songs);
             }
-            window.console.log("songs", songs);
 
             const songsdata = [
 
@@ -1208,9 +1219,6 @@
     <script src="js/bootstrap-hover-dropdown.js"></script>
     <script src="js/jquery.parallax-1.1.3.js"></script>
     <script src="js/owl.carousel.min.js"></script>
-    <!-- Replace test API Key "AIzaSyAZsDkJFLS0b59q7cmW0EprwfcfUA8d9dg" with your own one below 
-    You can get API Key here - https://developers.google.com/maps/documentation/javascript/get-api-key -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="js/google.maps.js"></script>
     <script src="js/jquery.vimelar.js"></script>
     <script src="js/jquery.vide.js"></script>
